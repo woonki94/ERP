@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&subset=korean');
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&subset=korean');
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon&subset=korean');
+* {
+	font-family: 'Nanum Gothic';
+}
+h5 {
+	font-family: 'Noto Sans KR';
+	font-size: 15px;
+}
+h4 {
+	font-family: 'Nanum Sans KR';
+}
+h3 {
+	font-family: 'Do Hyeon';
+}
+h2 {
+	font-family: 'Do Hyeon';
+}
+h1 {
+	font-family: 'Do Hyeon';
+}
+/* 테이블 관련 디자인 처리 */
+thead th {
+	background-color: #006DCC;
+	color: white;
+	text-align: center;
+}
+thead td {
+	background-color: #ffffff;
+	color: black;
+	text-align: center;
+}
+tr td:first-child,
+tr th:first-child {
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+
+tr td:last-child,
+tr th:last-child {
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+
+
+
+
