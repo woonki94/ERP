@@ -289,9 +289,7 @@ ArrayList<AccountListDTO> list=a.AccountListList();
 	</div>
 </div>
 	<!-- 
-	<footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
-		Copyright &copy; 세미콜론 All Rights Reserved.
-	</footer>
+	
 	 -->
 	<!-- 제이쿼리 자바스크립트 추가하기 -->
 	<script src="./js/jquery.min.js"></script>

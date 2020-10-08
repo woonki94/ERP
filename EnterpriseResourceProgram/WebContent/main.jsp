@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ page import =" java.io.PrintWriter" %>
 <%@page import="com.db.*" %>
-<%@page import="com.DTO.*" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.*" %>
 <!DOCTYPE html>
