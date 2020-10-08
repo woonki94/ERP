@@ -60,7 +60,7 @@ if(session.getAttribute("loginUser")==null){ %>
 		int amount = Integer.parseInt(a);
 		int unit = Integer.parseInt(u);
 		int price = amount * unit;
-		erp.UpdateSaleData(sid, client, product, amount, unit, price, date, employee);
+		sale.UpdateSaleData(sid, client, product, amount, unit, price, date, employee);
 		%>
 		<script>
 		location.href = "sale.jsp";   
