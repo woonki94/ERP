@@ -33,8 +33,9 @@ if(session.getAttribute("loginUser")==null){ %>
 <%
 	ERPDAO erp = new ERPDAO();
 	erp.dbConn();
+	ProductDAO pr=new ProductDAO();
 	request.setCharacterEncoding("utf-8");
-	ArrayList<ProductDTO> list=erp.ProductList();
+	ArrayList<ProductDTO> list=pr.ProductList();
 	ProductDTO update = new ProductDTO();
 	for(ProductDTO dto:list){
 		if(dto.getPRODUCT_ID().equals(request.getParameter("upid"))){
@@ -45,7 +46,7 @@ if(session.getAttribute("loginUser")==null){ %>
 	if(request.getParameter("productId")!=null && request.getParameter("productName")!=null){
 		String id = request.getParameter("productId");
 		String name = request.getParameter("productName");
-		erp.UpdateProductData(id, name);
+		pr.UpdateProductData(id, name);
 		%>
 		<script>
 		location.href = "product.jsp";   
@@ -269,11 +270,14 @@ if(session.getAttribute("loginUser")==null){ %>
 			  <tbody align="left">
 			    
 			 <%
+			 ProductionListDAO pld=new ProductionListDAO();
+			 ProductionManagementDAO pmd=new ProductionManagementDAO();
+			 SaleDAO sale=new SaleDAO();
 			 DecimalFormat fomatter=new DecimalFormat("###,###");
 			 int i=1;
-			 ArrayList<ProductionListDTO> plist=erp.ProductionListList();
-			 ArrayList<ProductionManagementDTO> mlist=erp.ProductionManagementList();
-			 ArrayList<SaleDTO> slist=erp.SaleList();
+			 ArrayList<ProductionListDTO> plist=pld.ProductionListList();
+			 ArrayList<ProductionManagementDTO> mlist=pmd.ProductionManagementList();
+			 ArrayList<SaleDTO> slist=sale.SaleList();
 			 int total=0;
 			 for(ProductDTO dto:list){
 			 %>

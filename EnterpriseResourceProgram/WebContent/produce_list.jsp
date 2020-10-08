@@ -33,16 +33,19 @@ if(session.getAttribute("loginUser")==null){ %>
 }
 ERPDAO e = new ERPDAO();
 e.dbConn();
+ProductionListDAO pl = new ProductionListDAO();
+ProductDAO pr= new ProductDAO();
+MaterialsDAO mat=new MaterialsDAO();
 request.setCharacterEncoding("utf-8");
-ArrayList<ProductionListDTO> list=e.ProductionListList();
-ArrayList<ProductDTO> p=e.ProductList(); 
+ArrayList<ProductionListDTO> list=pl.ProductionListList();
+ArrayList<ProductDTO> p=pr.ProductList(); 
 String productid=null;
 for(ProductDTO dto: p){
 	if(dto.getPRODUCT_NAME().equals(request.getParameter("productlist"))){
 		productid=dto.getPRODUCT_ID();
 	}
 }
-ArrayList<MaterialsDTO> m=e.MaterialsList(); 
+ArrayList<MaterialsDTO> m=mat.MaterialsList(); 
 %>
 
 <head>

@@ -13,8 +13,13 @@
 <%
 	ERPDAO erp = new ERPDAO();
 	erp.dbConn();
-	request.setCharacterEncoding("utf-8");
-	ArrayList<PurchaseDTO> list=erp.PurchaseList();
+	PurchaseDAO pur=new PurchaseDAO();
+	EmployeeDAO emp=new EmployeeDAO();
+	MaterialsDAO mat= new MaterialsDAO();
+	AccountListDAO acc=new AccountListDAO();
+
+request.setCharacterEncoding("utf-8");
+ArrayList<PurchaseDTO> list=pur.PurchaseList();
 	String div="매입";
 	if((!request.getParameter("purchaseId").equals("") || request.getParameterValues("autoIncrease")!=null) && !request.getParameter("materiallist").equals("")
 			&& !request.getParameter("amount").equals("") && !request.getParameter("dealDate").equals("") && !request.getParameter("employeelist").equals("")){
@@ -30,7 +35,7 @@
 		//int unit = Integer.parseInt(u);//수정할것-----------------------------------
 		//int price = Integer.parseInt(p);
 		int unit = 100;
-		ArrayList<MaterialsDTO> list1=erp.MaterialsList();
+		ArrayList<MaterialsDTO> list1=mat.MaterialsList();
 		for(MaterialsDTO dto: list1){
 			if(dto.getMATERIALS_NAME().equals(material)){
 				unit=dto.getAMOUNT();
@@ -43,7 +48,7 @@
 			pid = ag.autoIncreasePurchase(list);
 			System.out.println(pid+" "+ check[0]);
 		}
-		erp.InsertPurchaseData(pid, material, client, amount, unit, price, date, employee);
+		pur.InsertPurchaseData(pid, material, client, amount, unit, price, date, employee);
 		erp.InsertPurchase_Sale(div, date, client, employee,material, 0, price);
 		%>
 		<script>

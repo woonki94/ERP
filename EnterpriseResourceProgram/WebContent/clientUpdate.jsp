@@ -53,8 +53,7 @@ if(session.getAttribute("loginUser")==null){ %>
 		String addr = request.getParameter("address");
 		String mail = request.getParameter("mail");
 		String phone = request.getParameter("phoneNum");
-		//int phone = Integer.parseInt(p);
-		e.UpdateAccountListtData(id, name, addr, mail, phone);
+		a.UpdateAccountListtData(id, name, addr, mail, phone);
 		%>
 		<script>
 		location.href = "client.jsp";   

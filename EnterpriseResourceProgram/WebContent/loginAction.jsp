@@ -14,8 +14,9 @@
 <%
 	ERPDAO e = new ERPDAO();
 	e.dbConn();
+	EmployeeDAO emp=new EmployeeDAO();
 	request.setCharacterEncoding("utf-8");
-	ArrayList<EmployeeDTO> list=e.EmployeeList();
+	ArrayList<EmployeeDTO> list=emp.EmployeeList();
 	if(request.getParameter("id")!=null){
 		for(EmployeeDTO dto: list){
 			if(dto.getEID().equals(request.getParameter("id")) && dto.getE_PASSWORD().equals(request.getParameter("pwd"))){

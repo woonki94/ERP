@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.db.*" %>
-<%@page import="com.DTO.*" %>
+
 <%@page import="java.sql.*" %>
 <%@page import="java.util.ArrayList" %>
 <!DOCTYPE html>
@@ -135,8 +135,9 @@ $(document).ready(function() {
 
 ERPDAO e = new ERPDAO();
 e.dbConn();
+EmployeeDAO emp=new EmployeeDAO();
 request.setCharacterEncoding("utf-8");
-ArrayList<EmployeeDTO> list=e.EmployeeList();
+ArrayList<EmployeeDTO> list=emp.EmployeeList();
 %>
 <head>
   <meta http-equiv="X-UA-Compatible" content="text/html; charset=UTF-8">

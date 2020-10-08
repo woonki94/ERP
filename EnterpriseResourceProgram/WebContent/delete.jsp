@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.db.*" %>
-<%@page import="com.DTO.*" %>
 <%@page import="java.sql.*" %>
 <%@page import="java.util.ArrayList" %>
 <!DOCTYPE html>
@@ -24,34 +23,42 @@
 <!-- 항목 삭제 컨트롤러 -->
 <body>
 	<% 	
-	ERPDAO e = new ERPDAO();
-	e.dbConn();
+	ERPDAO erp = new ERPDAO();
+	SaleDAO sale = new SaleDAO();
+	AccountListDAO acc= new AccountListDAO();
+	EmployeeDAO emp = new EmployeeDAO();
+	MaterialsDAO mat = new MaterialsDAO();
+	ProductionManagementDAO pm = new ProductionManagementDAO();
+	ProductionListDAO pl = new ProductionListDAO();
+	ProductDAO pr = new ProductDAO();
+	PurchaseDAO pur = new PurchaseDAO();
+	erp.dbConn();
 	request.setCharacterEncoding("utf-8");
 	boolean delresult;
 	String str=request.getParameter("page");
 	if(str.equals("sale")){
-		delresult= e.DeleteSaleData(request.getParameter("delid"));
+		delresult= sale.DeleteSaleData(request.getParameter("delid"));
 	}
 	else if(str.equals("client")){
-		delresult= e.DeleteAccountListtData(request.getParameter("delid"));
+		delresult= acc.DeleteAccountListtData(request.getParameter("delid"));
 	}
 	else if(str.equals("employee")){
-		delresult= e.DeleteEmployeeData(request.getParameter("delid"));
+		delresult= emp.DeleteEmployeeData(request.getParameter("delid"));
 	}
 	else if(str.equals("materials")){
-		delresult= e.DeleteMaterialsData(request.getParameter("delid"));
+		delresult= mat.DeleteMaterialsData(request.getParameter("delid"));
 	}
 	else if(str.equals("produce")){
-		delresult= e.DeleteProductionManagementData(request.getParameter("delid"));
+		delresult= pm.DeleteProductionManagementData(request.getParameter("delid"));
 	}
 	else if(str.equals("produce_list")){
-		delresult= e.DeleteProductionListData(request.getParameter("delid"));
+		delresult= pl.DeleteProductionListData(request.getParameter("delid"));
 	}
 	else if(str.equals("product")){
-		delresult= e.DeleteProductData(request.getParameter("delid"));
+		delresult= pr.DeleteProductData(request.getParameter("delid"));
 	}
 	else if(str.equals("purchase")){
-		delresult= e.DeletePurchaseData(request.getParameter("delid"));
+		delresult= pur.DeletePurchaseData(request.getParameter("delid"));
 	}
 	 %>
 	 <script>

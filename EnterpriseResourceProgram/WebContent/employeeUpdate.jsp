@@ -14,8 +14,9 @@
 <%
 ERPDAO e = new ERPDAO();
 e.dbConn();
+EmployeeDAO emp=new EmployeeDAO();
 request.setCharacterEncoding("utf-8");
-ArrayList<EmployeeDTO> list=e.EmployeeList();
+ArrayList<EmployeeDTO> list=emp.EmployeeList();
 String id="0";
 if((!request.getParameter("personalId").equals("") ||request.getParameterValues("autoIncrease")!=null)
 	&& (!request.getParameter("password").equals("") ||request.getParameterValues("randomPassword")!=null)
@@ -50,7 +51,7 @@ if((!request.getParameter("personalId").equals("") ||request.getParameterValues(
 		}
 	}
 	
-	e.UpdateEmployeeData(id, name, pw, dep, rank, phone, pay, date);
+	emp.UpdateEmployeeData(id, name, pw, dep, rank, phone, pay, date);
 	%>
 	<script>
 	location.href = "employee.jsp";   

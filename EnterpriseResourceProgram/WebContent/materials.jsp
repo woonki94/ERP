@@ -253,10 +253,12 @@ if(session.getAttribute("loginUser")==null){ %>
 			 <%
 			ERPDAO e = new ERPDAO();
 			e.dbConn();
-			ArrayList<MaterialsDTO> list=e.MaterialsList();
+			MaterialsDAO mat=new MaterialsDAO();
+			ArrayList<MaterialsDTO> list=mat.MaterialsList();
 			DecimalFormat fomatter=new DecimalFormat("###,###");
 			int i=1;
-			ArrayList<PurchaseDTO> plist = e.PurchaseList();
+			PurchaseDAO pur=new PurchaseDAO();
+			ArrayList<PurchaseDTO> plist = pur.PurchaseList();
 			int[] pamount = new int[list.size()];
 			for(MaterialsDTO dto:list){
 			 %>

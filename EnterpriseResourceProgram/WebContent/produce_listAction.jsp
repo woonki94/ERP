@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.db.*" %>
-<%@page import="com.DTO.*" %>
 <%@page import="java.sql.*" %>
 <%@page import="java.util.ArrayList" %>
 <%@page import ="java.text.DecimalFormat" %>
@@ -15,16 +14,19 @@
 <%
 	ERPDAO erp = new ERPDAO();
 	erp.dbConn();
+	ProductionListDAO pl = new ProductionListDAO();
+	ProductDAO pr= new ProductDAO();
+	MaterialsDAO mat=new MaterialsDAO();
 	request.setCharacterEncoding("utf-8");
-	ArrayList<ProductionListDTO> list=erp.ProductionListList();
-	ArrayList<ProductDTO> p=erp.ProductList(); 
+	ArrayList<ProductionListDTO> list=pl.ProductionListList();
+	ArrayList<ProductDTO> p=pr.ProductList();
 	String productid=null;
 	for(ProductDTO dto: p){
 		if(dto.getPRODUCT_NAME().equals(request.getParameter("productlist"))){
 			productid=dto.getPRODUCT_ID();
 		}
 	}
-	ArrayList<MaterialsDTO> m=erp.MaterialsList(); 
+	ArrayList<MaterialsDTO> m=mat.MaterialsList(); 
 	AutoGenerator ag = new AutoGenerator();
 	String pid = ag.autoIncreaseProductionListNo(list);
 	if(!request.getParameter("amount").equals("")){
@@ -37,7 +39,7 @@
 				price=dto.getAMOUNT();
 			}
 		}
-		erp.InsertProductionListData(pid, product, Integer.parseInt(productid), material, amount, price*amount);
+		pl.InsertProductionListData(pid, product, Integer.parseInt(productid), material, amount, price*amount);
 		%>
 		<script>
 		location.href = "produce_list.jsp";   

@@ -33,8 +33,13 @@ if(session.getAttribute("loginUser")==null){ %>
 <%
 	ERPDAO erp = new ERPDAO();
 	erp.dbConn();
+	SaleDAO sale=new SaleDAO();
+	EmployeeDAO emp=new EmployeeDAO();
+	ProductDAO prd= new ProductDAO();
+	AccountListDAO acc=new AccountListDAO();
+	
 	request.setCharacterEncoding("utf-8");
-	ArrayList<SaleDTO> list=erp.SaleList();
+	ArrayList<SaleDTO> list=sale.SaleList();
 	SaleDTO update = new SaleDTO();
 	for(SaleDTO dto:list){
 		if(dto.getSALE_CODE().equals(request.getParameter("upid"))){
@@ -253,7 +258,7 @@ if(session.getAttribute("loginUser")==null){ %>
 				    	<label>제품</label>
 				    	<select name="productlist" class="form-control form-control-sm" id="productlist">
 							<%
-				    		ArrayList<ProductDTO> m=erp.ProductList(); 
+				    		ArrayList<ProductDTO> m=prd.ProductList(); 
 				    		for(ProductDTO dto: m){
 				    			if(dto.getPRODUCT_NAME().equals(update.getPRODUCT_ID())){%>
 				    				<option value=<%=dto.getPRODUCT_NAME() %> selected><%=dto.getPRODUCT_NAME() %></option>
@@ -270,7 +275,7 @@ if(session.getAttribute("loginUser")==null){ %>
 				    	<label>거래처</label>
 				    	<select name="clientlist" class="form-control form-control-sm" id="clientlist">
 							<%
-				    			ArrayList<AccountListDTO> a=erp.AccountListList(); 
+				    			ArrayList<AccountListDTO> a=acc.AccountListList(); 
 				    			for(AccountListDTO dto: a){
 				    				if(dto.getBUSINESS_NAME().equals(update.getVENDOR_BID())){%>
 				    					<option value=<%=dto.getBUSINESS_NAME() %> selected><%=dto.getBUSINESS_NAME() %></option>
@@ -304,7 +309,7 @@ if(session.getAttribute("loginUser")==null){ %>
 				    	<label>담당자</label>
 				    	<select name="employeelist" class="form-control form-control-sm" id="employeelist" value=<%=update.getSALE_EID() %>>
 							<%
-				    		ArrayList<EmployeeDTO> e=erp.EmployeeList(); 
+				    		ArrayList<EmployeeDTO> e=emp.EmployeeList(); 
 				    		for(EmployeeDTO dto: e){%>
 			    				<option value=<%=dto.getE_NAME() %>><%=dto.getE_NAME() %></option>
 			    		<%

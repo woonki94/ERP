@@ -32,8 +32,9 @@ if(session.getAttribute("loginUser")==null){ %>
 }
 ERPDAO erp = new ERPDAO();
 erp.dbConn();
+ProductDAO pr=new ProductDAO();
 request.setCharacterEncoding("utf-8");
-ArrayList<ProductDTO> list=erp.ProductList();
+ArrayList<ProductDTO> list=pr.ProductList();
 %>
 <head>
   <meta http-equiv="X-UA-Compatible" content="text/html; charset=UTF-8">
@@ -258,11 +259,14 @@ ArrayList<ProductDTO> list=erp.ProductList();
 			  <tbody align="left">
 			    
 			 <%
+			 ProductionListDAO pld=new ProductionListDAO();
+			 ProductionManagementDAO pmd=new ProductionManagementDAO();
+			 SaleDAO sale=new SaleDAO();
 			 DecimalFormat fomatter=new DecimalFormat("###,###");
 			 int i=1;
-			 ArrayList<ProductionListDTO> plist=erp.ProductionListList();
-			 ArrayList<ProductionManagementDTO> mlist=erp.ProductionManagementList();
-			 ArrayList<SaleDTO> slist=erp.SaleList();
+			 ArrayList<ProductionListDTO> plist=pld.ProductionListList();
+			 ArrayList<ProductionManagementDTO> mlist=pmd.ProductionManagementList();
+			 ArrayList<SaleDTO> slist=sale.SaleList();
 			 int total=0;
 			 for(ProductDTO dto:list){
 			 %>

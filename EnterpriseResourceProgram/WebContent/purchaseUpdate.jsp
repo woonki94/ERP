@@ -28,8 +28,13 @@ if(session.getAttribute("loginUser")==null){ %>
 <%
 	ERPDAO erp = new ERPDAO();
 	erp.dbConn();
+	PurchaseDAO pur=new PurchaseDAO();
+	EmployeeDAO emp=new EmployeeDAO();
+	MaterialsDAO mat= new MaterialsDAO();
+	AccountListDAO acc=new AccountListDAO();
+	
 	request.setCharacterEncoding("utf-8");
-	ArrayList<PurchaseDTO> list=erp.PurchaseList();
+	ArrayList<PurchaseDTO> list=pur.PurchaseList();
 	PurchaseDTO update = new PurchaseDTO();
 	for(PurchaseDTO dto:list){
 		if(dto.getPURCHASE_CODE().equals(request.getParameter("upid"))){
@@ -51,14 +56,14 @@ if(session.getAttribute("loginUser")==null){ %>
 		//int unit = Integer.parseInt(u);//수정할것-----------------------------------
 		//int price = Integer.parseInt(p);
 		int unit = 100;
-		ArrayList<MaterialsDTO> list1=erp.MaterialsList();
+		ArrayList<MaterialsDTO> list1=mat.MaterialsList();
 		for(MaterialsDTO dto: list1){
 			if(dto.getMATERIALS_NAME().equals(material)){
 				unit=dto.getAMOUNT();
 			}
 		}
 		int price = amount * unit;
-		erp.UpdatePurchaseData(pid, material, client, amount, unit, price, date, employee);//client 삭제============
+		pur.UpdatePurchaseData(pid, material, client, amount, unit, price, date, employee);//client 삭제============
 		%>
 		<script>
 		location.href = "purchase.jsp";   
@@ -254,7 +259,7 @@ if(session.getAttribute("loginUser")==null){ %>
 				    	<label>자재</label>
 				    	<select name="materiallist" class="form-control form-control-sm" id="materiallist">
 							<%
-				    		ArrayList<MaterialsDTO> m=erp.MaterialsList(); 
+				    		ArrayList<MaterialsDTO> m=mat.MaterialsList(); 
 				    		for(MaterialsDTO dto: m){
 				    			if(dto.getMATERIALS_NAME().equals(update.getMATERIALS_ID())){%>
 				    				<option value=<%=dto.getMATERIALS_NAME() %> selected><%=dto.getMATERIALS_NAME() %></option>
@@ -271,7 +276,7 @@ if(session.getAttribute("loginUser")==null){ %>
 				    	<label>거래처</label>
 				    	<select name="clientlist" class="form-control form-control-sm" id="clientlist">
 							<%
-				    		ArrayList<AccountListDTO> a=erp.AccountListList(); 
+				    		ArrayList<AccountListDTO> a=acc.AccountListList(); 
 				    		for(AccountListDTO dto: a){
 				    			if(dto.getBUSINESS_NAME().equals(update.getSELLER_BID())){%>
 				    				<option value=<%=dto.getBUSINESS_NAME() %> selected><%=dto.getBUSINESS_NAME() %></option>
@@ -302,7 +307,7 @@ if(session.getAttribute("loginUser")==null){ %>
 					    <label>담당자</label>
 				  		<select name="employeelist" class="form-control form-control-sm" id="employeelist">
 				    		<%
-				    		ArrayList<EmployeeDTO> e=erp.EmployeeList(); 
+				    		ArrayList<EmployeeDTO> e=emp.EmployeeList(); 
 				    		for(EmployeeDTO dto: e){
 				    			if(dto.getE_NAME().equals(update.getPURCHASE_EID())){%>
 			    				<option value=<%=dto.getE_NAME() %> selected><%=dto.getE_NAME() %></option>

@@ -32,8 +32,13 @@ if(session.getAttribute("loginUser")==null){ %>
 }
 ERPDAO erp = new ERPDAO();
 erp.dbConn();
+SaleDAO sale=new SaleDAO();
+EmployeeDAO emp=new EmployeeDAO();
+ProductDAO prd= new ProductDAO();
+AccountListDAO acc=new AccountListDAO();
+
 request.setCharacterEncoding("utf-8");
-ArrayList<SaleDTO> list=erp.SaleList();
+ArrayList<SaleDTO> list=sale.SaleList();
 %>
 <head>
   <meta http-equiv="X-UA-Compatible" content="text/html; charset=UTF-8">
@@ -214,7 +219,7 @@ ArrayList<SaleDTO> list=erp.SaleList();
 				    	<label>제품</label>
 				    	<select name="productlist" class="form-control form-control-sm" id="productlist">
 							<%
-				    		ArrayList<ProductDTO> m=erp.ProductList(); 
+				    		ArrayList<ProductDTO> m=prd.ProductList(); 
 				    		for(ProductDTO dto: m){%>
 				    				<option value=<%=dto.getPRODUCT_NAME() %>><%=dto.getPRODUCT_NAME() %></option>
 				    		<%
@@ -226,7 +231,7 @@ ArrayList<SaleDTO> list=erp.SaleList();
 				    	<label>거래처</label>
 				    	<select name="clientlist" class="form-control form-control-sm" id="clientlist">
 							<%
-				    		ArrayList<AccountListDTO> a=erp.AccountListList(); 
+				    		ArrayList<AccountListDTO> a=acc.AccountListList(); 
 				    		for(AccountListDTO dto: a){%>
 				    			<option value=<%=dto.getBUSINESS_NAME() %>><%=dto.getBUSINESS_NAME() %></option>
 				    		<%
@@ -255,7 +260,7 @@ ArrayList<SaleDTO> list=erp.SaleList();
 				    	<label>담당자</label>
 				    	<select name="employeelist" class="form-control form-control-sm" id="employeelist">
 							<%
-				    		ArrayList<EmployeeDTO> e=erp.EmployeeList(); 
+				    		ArrayList<EmployeeDTO> e=emp.EmployeeList(); 
 				    		for(EmployeeDTO dto: e){%>
 			    				<option value=<%=dto.getE_NAME() %>><%=dto.getE_NAME() %></option>
 			    		<%

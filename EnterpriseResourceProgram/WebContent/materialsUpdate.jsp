@@ -36,7 +36,9 @@ if(session.getAttribute("loginUser")==null){ %>
 	ERPDAO e = new ERPDAO();
 	e.dbConn();
 	request.setCharacterEncoding("utf-8");
-	ArrayList<MaterialsDTO> list=e.MaterialsList();
+	MaterialsDAO mat=new MaterialsDAO();
+	PurchaseDAO pur=new PurchaseDAO();
+	ArrayList<MaterialsDTO> list=mat.MaterialsList();
 	MaterialsDTO update = new MaterialsDTO();
 	for(MaterialsDTO dto:list){
 		if(dto.getMATERIALS_ID().equals(request.getParameter("upid"))){
@@ -49,7 +51,7 @@ if(session.getAttribute("loginUser")==null){ %>
 		String name = request.getParameter("materialName");
 		String p=request.getParameter("price");
 		int price = Integer.parseInt(p);
-		e.UpdateMaterialsData(id, name, price);
+		mat.UpdateMaterialsData(id, name, price);
 		%>
 		<script>
 		location.href = "materials.jsp";   
@@ -291,7 +293,7 @@ if(session.getAttribute("loginUser")==null){ %>
 			 <%
 			int i=1;
 			DecimalFormat fomatter=new DecimalFormat("###,###");
-			ArrayList<PurchaseDTO> plist = e.PurchaseList();
+			ArrayList<PurchaseDTO> plist = pur.PurchaseList();
 			int[] pamount = new int[list.size()];
 			for(MaterialsDTO dto:list){
 			 %>

@@ -30,9 +30,13 @@ if(session.getAttribute("loginUser")==null){ %>
 <%
 }
 ERPDAO erp = new ERPDAO();
+ProductDAO prd=new ProductDAO();
+EmployeeDAO emp=new EmployeeDAO();
+ProductionListDAO pld=new ProductionListDAO();
 erp.dbConn();
+ProductionManagementDAO pm=new ProductionManagementDAO();
 request.setCharacterEncoding("utf-8");
-ArrayList<ProductionManagementDTO> list=erp.ProductionManagementList();
+ArrayList<ProductionManagementDTO> list=pm.ProductionManagementList();
 %>
 <head>
   <meta http-equiv="X-UA-Compatible" content="text/html; charset=UTF-8">
@@ -223,7 +227,7 @@ ArrayList<ProductionManagementDTO> list=erp.ProductionManagementList();
 				    	<label>생산 제품</label>
 				    	<select name="productlist" class="form-control form-control-sm" id="productlist">
 							<%
-				    		ArrayList<ProductDTO> m=erp.ProductList(); 
+				    		ArrayList<ProductDTO> m=prd.ProductList(); 
 				    		for(ProductDTO dto: m){%>
 				    				<option value=<%=dto.getPRODUCT_NAME() %>><%=dto.getPRODUCT_NAME() %></option>
 				    		<%
@@ -235,7 +239,7 @@ ArrayList<ProductionManagementDTO> list=erp.ProductionManagementList();
 				    	<label>담당자</label>
 				    	<select name="employeelist" class="form-control form-control-sm" id="employeelist">
 							<%
-				    		ArrayList<EmployeeDTO> e=erp.EmployeeList(); 
+				    		ArrayList<EmployeeDTO> e=emp.EmployeeList(); 
 				    		for(EmployeeDTO dto: e){%>
 			    				<option value=<%=dto.getE_NAME() %>><%=dto.getE_NAME() %></option>
 			    		<%
@@ -287,7 +291,7 @@ ArrayList<ProductionManagementDTO> list=erp.ProductionManagementList();
 			 <%
 			DecimalFormat fomatter=new DecimalFormat("###,###");
 			int i=1, total=0;
-			ArrayList<ProductionListDTO> plist=erp.ProductionListList();
+			ArrayList<ProductionListDTO> plist=pld.ProductionListList();
 			for(ProductionManagementDTO dto:list){
 			 %>
 			    <tr align="left">

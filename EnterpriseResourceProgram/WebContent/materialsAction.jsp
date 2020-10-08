@@ -15,7 +15,8 @@
 	ERPDAO e = new ERPDAO();
 	e.dbConn();
 	request.setCharacterEncoding("utf-8");
-	ArrayList<MaterialsDTO> list=e.MaterialsList();
+	MaterialsDAO mat=new MaterialsDAO();
+	ArrayList<MaterialsDTO> list=mat.MaterialsList();
 	if((!request.getParameter("materialId").equals("")||request.getParameterValues("autoIncrease")!=null) && !request.getParameter("materialName").equals("")&& !request.getParameter("price").equals("")){
 		String id = request.getParameter("materialId");
 		String name = request.getParameter("materialName");
@@ -27,7 +28,7 @@
 			id = ag.autoIncreaseMaterials(list);
 			System.out.println(id+" "+ check[0]);
 		}
-		e.InsertMaterialsData(id, name, price);
+		mat.InsertMaterialsData(id, name, price);
 		%>
 		<script>
 		location.href = "materials.jsp";   

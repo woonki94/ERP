@@ -34,9 +34,12 @@ if(session.getAttribute("loginUser")==null){ %>
 <%
 	ERPDAO erp = new ERPDAO();
 	erp.dbConn();
+	ProductionListDAO pl = new ProductionListDAO();
+	ProductDAO pr= new ProductDAO();
+	MaterialsDAO mat = new MaterialsDAO();
 	request.setCharacterEncoding("utf-8");
-	ArrayList<ProductionListDTO> list=erp.ProductionListList();
-	ArrayList<ProductDTO> p=erp.ProductList(); 
+	ArrayList<ProductionListDTO> list=pl.ProductionListList();
+	ArrayList<ProductDTO> p=pr.ProductList(); 
 	ProductionListDTO update = new ProductionListDTO();
 	for(ProductionListDTO dto:list){
 		if(dto.getPRODUCTION_CODE().equals(request.getParameter("upid"))){
@@ -50,7 +53,8 @@ if(session.getAttribute("loginUser")==null){ %>
 			productid=dto.getPRODUCT_ID();
 		}
 	}
-	ArrayList<MaterialsDTO> m=erp.MaterialsList(); 
+	
+	ArrayList<MaterialsDTO> m=mat.MaterialsList(); 
 	AutoGenerator ag = new AutoGenerator();
 	String pid = update.getPRODUCTION_CODE();
 	if(request.getParameter("productlist")!=null
@@ -64,7 +68,7 @@ if(session.getAttribute("loginUser")==null){ %>
 				price=dto.getAMOUNT();
 			}
 		}
-		erp.UpdateProductionListData(pid, product, Integer.parseInt(productid), material, amount, price*amount);
+		pl.UpdateProductionListData(pid, product, Integer.parseInt(productid), material, amount, price*amount);
 		%>
 		<script>
 		location.href = "produce_list.jsp";   

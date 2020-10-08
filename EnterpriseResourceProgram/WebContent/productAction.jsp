@@ -13,8 +13,9 @@
 <%
 	ERPDAO erp = new ERPDAO();
 	erp.dbConn();
+	ProductDAO pr=new ProductDAO();
 	request.setCharacterEncoding("utf-8");
-	ArrayList<ProductDTO> list=erp.ProductList();
+	ArrayList<ProductDTO> list=pr.ProductList();
 	if((!request.getParameter("productId").equals("")||request.getParameterValues("autoIncrease")!=null) && !request.getParameter("productName").equals("")){
 		String id = request.getParameter("productId");
 		String name = request.getParameter("productName");
@@ -24,7 +25,7 @@
 			id = ag.autoIncreaseProduct(list);
 			System.out.println(id+" "+ check[0]);
 		}
-		erp.InsertProductData(id, name);
+		pr.InsertProductData(id, name);
 		%>
 		<script>
 		location.href = "product.jsp";   

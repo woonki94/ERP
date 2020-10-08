@@ -32,8 +32,9 @@ if(session.getAttribute("loginUser")==null){ %>
 }
 ERPDAO erp = new ERPDAO();
 erp.dbConn();
+ProductionManagementDAO pm=new ProductionManagementDAO();
 request.setCharacterEncoding("utf-8");
-ArrayList<ProductionManagementDTO> list=erp.ProductionManagementList();
+ArrayList<ProductionManagementDTO> list=pm.ProductionManagementList();
 ProductionManagementDTO update = new ProductionManagementDTO();
 for(ProductionManagementDTO dto:list){
 	if(dto.getPRODUCTION_CODE().equals(request.getParameter("upid"))){
@@ -48,7 +49,7 @@ if(request.getParameter("productlist")!=null && request.getParameter("employeeli
 	String date=request.getParameter("produceDate");
 	int amount=Integer.parseInt(request.getParameter("amount"));
 	String employee=request.getParameter("employeelist");
-	erp.UpdateProductionManagementData(product, amount, date, employee);
+	pm.UpdateProductionManagementData(product, amount, date, employee);
 	%>
 	<script>
 	location.href = "produce.jsp";   
@@ -299,7 +300,8 @@ if(request.getParameter("productlist")!=null && request.getParameter("employeeli
 			 <%
 			DecimalFormat fomatter=new DecimalFormat("###,###");
 			int i=1, total=0;
-			ArrayList<ProductionListDTO> plist=erp.ProductionListList();
+			ProductionListDAO pld=new ProductionListDAO();
+			ArrayList<ProductionListDTO> plist= pld.ProductionListList();
 			for(ProductionManagementDTO dto:list){
 			 %>
 			    <tr align="left">

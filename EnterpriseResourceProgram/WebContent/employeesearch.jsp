@@ -136,8 +136,9 @@ $(document).ready(function() {
 
 ERPDAO e = new ERPDAO();
 e.dbConn();
+EmployeeDAO emp=new EmployeeDAO();
 request.setCharacterEncoding("utf-8");
-ArrayList<EmployeeDTO> list=e.EmployeeList();
+ArrayList<EmployeeDTO> list=emp.EmployeeList();
 
 String sname=request.getParameter("sName");
 String sdep=request.getParameter("sDepartment");

@@ -13,8 +13,13 @@
 <%
 	ERPDAO erp = new ERPDAO();
 	erp.dbConn();
+	SaleDAO sale=new SaleDAO();
+	EmployeeDAO emp=new EmployeeDAO();
+	ProductDAO prd= new ProductDAO();
+	AccountListDAO acc=new AccountListDAO();
+	
 	request.setCharacterEncoding("utf-8");
-	ArrayList<SaleDTO> list=erp.SaleList();
+	ArrayList<SaleDTO> list=sale.SaleList();
 	String div="매출";
 	
 	if((!request.getParameter("saleId").equals("") || request.getParameterValues("autoIncrease")!=null)
@@ -37,7 +42,7 @@
 			sid = ag.autoIncreaseSale(list);
 			System.out.println(sid+" "+ check[0]);
 		}
-		erp.InsertSaleData(sid, client, product, amount, unit, price, date, employee);
+		sale.InsertSaleData(sid, client, product, amount, unit, price, date, employee);
 		erp.InsertPurchase_Sale(div, date, client, employee, product, price, 0);
 		%>
 		<script>

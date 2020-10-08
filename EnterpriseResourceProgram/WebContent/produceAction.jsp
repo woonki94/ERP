@@ -13,15 +13,16 @@
 <%
 ERPDAO erp = new ERPDAO();
 erp.dbConn();
+ProductionManagementDAO pm=new ProductionManagementDAO();
 request.setCharacterEncoding("utf-8");
-ArrayList<ProductionManagementDTO> list=erp.ProductionManagementList();
+ArrayList<ProductionManagementDTO> list=pm.ProductionManagementList();
 if(!request.getParameter("produceDate").equals("") && !request.getParameter("amount").equals("")){
 	AutoGenerator ag = new AutoGenerator();
 	String product=ag.autoIncreaseProductionManagementNo(list, request.getParameter("productlist"));
 	String date=request.getParameter("produceDate");
 	int amount=Integer.parseInt(request.getParameter("amount"));
 	String employee=request.getParameter("employeelist");
-	erp.InsertProductionManagementData(product, amount, date, employee);
+	pm.InsertProductionManagementData(product, amount, date, employee);
 	%>
 	<script>
 	location.href = "produce.jsp";   
