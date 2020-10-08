@@ -60,26 +60,7 @@ ArrayList<SaleDTO> list=sale.SaleList();
 	
 	<!-- 테이블 검색 스크립트 --> 
 		
-	    <script>
-        jQuery(function($){
-            //$("#foo-table").DataTable();
-            $("#foo-table").DataTable({
-            	// 표시 건수기능 숨기기
-            	lengthChange: false,
-            	// 검색 기능 숨기기
-            	searching: false,
-            	// 정렬 기능 숨기기
-            	//ordering: false,
-            	// 정보 표시 숨기기
-            	info: false,
-            	// 페이징 기능 숨기기
-            	paging: false
-            });
-        });
-        jQuery(function($){
-        	$('.foo-table').footable();
-        });
-    </script>
+	   
 	
 
 </head>

@@ -20,7 +20,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
 	-->
 </head>
-<!-- 항목 삭제 컨트롤러 -->
+
 <body>
 	<% 	
 	ERPDAO erp = new ERPDAO();

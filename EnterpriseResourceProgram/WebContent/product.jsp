@@ -53,29 +53,7 @@ ArrayList<ProductDTO> list=pr.ProductList();
 	<!-- 
      <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> 
 	-->
-	
-	<!-- 테이블 검색 스크립트 --> 
-		
-	    <script>
-        jQuery(function($){
-            //$("#foo-table").DataTable();
-            $("#foo-table").DataTable({
-            	// 표시 건수기능 숨기기
-            	lengthChange: false,
-            	// 검색 기능 숨기기
-            	searching: false,
-            	// 정렬 기능 숨기기
-            	//ordering: false,
-            	// 정보 표시 숨기기
-            	info: false,
-            	// 페이징 기능 숨기기
-            	paging: false
-            });
-        });
-        jQuery(function($){
-        	$('.foo-table').footable();
-        });
-    </script>
+
 	
 
 </head>
