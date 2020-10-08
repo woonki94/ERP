@@ -17,7 +17,7 @@ ProductionManagementDAO pm=new ProductionManagementDAO();
 request.setCharacterEncoding("utf-8");
 ArrayList<ProductionManagementDTO> list=pm.ProductionManagementList();
 if(!request.getParameter("produceDate").equals("") && !request.getParameter("amount").equals("")){
-	AutoGenerator ag = new AutoGenerator();
+	
 	String product=request.getParameter("productlist");
 	String date=request.getParameter("produceDate");
 	int amount=Integer.parseInt(request.getParameter("amount"));

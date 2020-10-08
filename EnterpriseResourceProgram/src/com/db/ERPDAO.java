@@ -34,28 +34,6 @@ public class ERPDAO{
 		}
 	}
 
-	public Connection dbReConn() {
-		Connection conn = null;
-		try {
-			// Register JDBC driver
-			Class.forName("com.mysql.jdbc.Driver");
-
-			// Open a connection
-			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/ERP?useUnicode=true&characterEncoding=utf8&user=root&password=qwe123&useSSL=false&serverTimezone=UTC");
-			
-		} catch (Exception e) {
-			// Handle errors for Class.forName
-			e.printStackTrace();
-			System.out.println("재 접속 실패!");
-			
-		}
-
-		return conn;
-	}
-	
-	
 	public Boolean InsertPurchase_Sale(String div,String p_DATE, String bid, String eid, String product, int s_Price, int p_Price) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -104,6 +82,39 @@ public class ERPDAO{
 		else
 			return false;
 	}
+	
+
+	
+	public String autoIncreaseProductionListNo(ArrayList<ProductionListDTO> list){
+		int n=0;
+		for(ProductionListDTO dto : list){
+			if(dto.getID() == n) {
+				n++;
+			}
+		}
+		return String.valueOf(n);
+	}
+
+	public String autoIncreasePurchase(ArrayList<PurchaseDTO> list){
+		int n=1;
+		for(PurchaseDTO dto : list){
+			if(dto.getID() == n) {
+				n++;
+			}
+		}
+		return String.valueOf(n);
+	}
+	
+	public String autoIncreaseSale(ArrayList<SaleDTO> list){
+		int n=1;
+		for(SaleDTO dto : list){
+			if(dto.getID() == n) {
+				n++;
+			}
+		}
+		return String.valueOf(n);
+	}
+	
 	
 
 	

@@ -27,8 +27,7 @@
 		}
 	}
 	ArrayList<MaterialsDTO> m=mat.MaterialsList(); 
-	AutoGenerator ag = new AutoGenerator();
-	String pid = ag.autoIncreaseProductionListNo(list);
+	String pid = erp.autoIncreaseProductionListNo(list);
 	if(!request.getParameter("amount").equals("")){
 		String product = request.getParameter("productlist");
 		String material = request.getParameter("materiallist");

@@ -19,12 +19,7 @@
 	if((!request.getParameter("productId").equals("")||request.getParameterValues("autoIncrease")!=null) && !request.getParameter("productName").equals("")){
 		String id = request.getParameter("productId");
 		String name = request.getParameter("productName");
-		if(request.getParameterValues("autoIncrease")!=null){
-			String[] check = request.getParameterValues("autoIncrease");
-			AutoGenerator ag = new AutoGenerator();
-			id = ag.autoIncreaseProduct(list);
-			System.out.println(id+" "+ check[0]);
-		}
+		
 		pr.InsertProductData(id, name);
 		%>
 		<script>

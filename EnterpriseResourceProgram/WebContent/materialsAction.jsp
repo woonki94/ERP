@@ -22,12 +22,7 @@
 		String name = request.getParameter("materialName");
 		String p=request.getParameter("price");
 		int price = Integer.parseInt(p);
-		if(request.getParameterValues("autoIncrease")!=null){
-			String[] check = request.getParameterValues("autoIncrease");
-			AutoGenerator ag = new AutoGenerator();
-			id = ag.autoIncreaseMaterials(list);
-			System.out.println(id+" "+ check[0]);
-		}
+		
 		mat.InsertMaterialsData(id, name, price);
 		%>
 		<script>

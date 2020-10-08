@@ -38,8 +38,8 @@
 		int price = amount * unit;
 		if(request.getParameterValues("autoIncrease")!=null){
 			String[] check = request.getParameterValues("autoIncrease");
-			AutoGenerator ag = new AutoGenerator();
-			sid = ag.autoIncreaseSale(list);
+			
+			sid = erp.autoIncreaseSale(list);
 			System.out.println(sid+" "+ check[0]);
 		}
 		sale.InsertSaleData(sid, client, product, amount, unit, price, date, employee);

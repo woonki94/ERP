@@ -26,13 +26,7 @@
 		String addr = request.getParameter("address");
 		String mail = request.getParameter("mail");
 		String phone = request.getParameter("phoneNum");
-		//int phone = Integer.parseInt(p);
-		if(request.getParameterValues("autoIncrease")!=null){
-			String[] check = request.getParameterValues("autoIncrease");
-			AutoGenerator ag = new AutoGenerator();
-			id = ag.autoIncreaseAccountList(list);
-			System.out.println(id+" "+ check[0]);
-		}
+		
 		a.InsertAccountListtData(id, name, addr, mail, phone);
 		%>
 		<script>

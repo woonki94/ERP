@@ -32,8 +32,6 @@ ArrayList<PurchaseDTO> list=pur.PurchaseList();
 		String date=request.getParameter("dealDate");
 		String employee=request.getParameter("employeelist");
 		int amount = Integer.parseInt(a);
-		//int unit = Integer.parseInt(u);//수정할것-----------------------------------
-		//int price = Integer.parseInt(p);
 		int unit = 100;
 		ArrayList<MaterialsDTO> list1=mat.MaterialsList();
 		for(MaterialsDTO dto: list1){
@@ -44,8 +42,7 @@ ArrayList<PurchaseDTO> list=pur.PurchaseList();
 		int price = amount * unit;
 		if(request.getParameterValues("autoIncrease")!=null){
 			String[] check = request.getParameterValues("autoIncrease");
-			AutoGenerator ag = new AutoGenerator();
-			pid = ag.autoIncreasePurchase(list);
+			pid = erp.autoIncreasePurchase(list);
 			System.out.println(pid+" "+ check[0]);
 		}
 		pur.InsertPurchaseData(pid, material, client, amount, unit, price, date, employee);
