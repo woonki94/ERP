@@ -33,23 +33,10 @@ if((!request.getParameter("personalId").equals("") ||request.getParameterValues(
 	String n = request.getParameter("payNum");
 	String phone = request.getParameter("phoneNum");
 	int pay = Integer.parseInt(n);
+		
+	id = request.getParameter("upid");
+		
 	
-	if(request.getParameterValues("randomPassword")!=null){
-		AutoGenerator ag = new AutoGenerator();
-		pw = ag.autoPassword();
-	}
-	//String[] check = request.getParameterValues("autoIncrease");
-	if(request.getParameterValues("autoIncrease")!=null){
-		String[] check = request.getParameterValues("autoIncrease");
-		AutoGenerator ag = new AutoGenerator();
-		id = ag.autoIncreaseEmployee(list);
-		System.out.println(id+" "+ check[0]);
-	}
-	else{
-		if(request.getParameter("personalId")!=""){
-			id = request.getParameter("personalId");
-		}
-	}
 	
 	emp.UpdateEmployeeData(id, name, pw, dep, rank, phone, pay, date);
 	%>

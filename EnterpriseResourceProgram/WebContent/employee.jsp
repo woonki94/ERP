@@ -69,7 +69,7 @@ document.forms['form1'].reset();
 	}
 		
     function idUpdate(upID){
-    	location.href="#editEmployeeModal?upid=" + upID;
+    	location.href="employeeUpdate.jsp?upid=" + upID + "&page=employee";
     }
     
 </script>
@@ -113,8 +113,8 @@ $(document).ready(function() {
   
     
     //수정 폼의 action 속성의 값 변경
-   //$("#input form").attr("action", "Employee_update.jsp");
-    //$("#editEmployeeModal").modal("show");
+    $("#input form").attr("action", "Employee_update.jsp");
+    $("#editEmployeeModal").modal("show");
     
     
     $("#personalId").val($(this).parent("tr").children().eq(0).text(0))
@@ -421,13 +421,13 @@ ArrayList<EmployeeDTO> list=emp.EmployeeList();
 								  <!-- 폼 전송시 action="", method="" 속성 필수 -->
 	               				  <!-- DML 액션시 폼 페이지, 액션 페이지 분리 필요(새로고침 문제점 해결) -->
 	               
-	                
+	                			
 	                  			  <!-- 수정 액션 진행시 필요 -->
 	                    		  <!-- hidden 태그는 프로그램 진행상 필요로 하는 값을 임시 저장할 때 사용 -->
 	                    		  <!-- 주의) form 엘리먼트 안쪽에 위치해야 한다 -->    
 	                   			<div class="form-group">
 						    	<label>사원코드</label>
-						    	<input type="number" min="0" name="personalId" class="form-control form-control-sm" id="personalId" placeholder="사원ID" required value="">
+						    	<input type="number" min="0" name="personalId" class="form-control form-control-sm" id="personalId" placeholder="사원ID" value="값">
 						    </div>
 						    
 						  
@@ -435,7 +435,7 @@ ArrayList<EmployeeDTO> list=emp.EmployeeList();
 						  
 						    <div class="form-group">
 						    	<label>패스워드</label>
-						    	<input type="password" name="password" class="form-control form-control-sm" id="password" placeholder="패스워드">
+						    	<input type="password" name="password" class="form-control form-control-sm" id="password" placeholder="패스워드" required value="">
 						    </div>
 						    
 						  
@@ -443,11 +443,11 @@ ArrayList<EmployeeDTO> list=emp.EmployeeList();
 						  
 						    <div class="form-group">
 						    	<label>이름</label>
-						    	<input type="text" name="name" class="form-control form-control-sm" id="name" placeholder="이름" >
+						    	<input type="text" name="name" class="form-control form-control-sm" id="name" placeholder="이름"  required value="">
 						    </div>
 						    <div class="form-group">
 						    	<label>호봉</label>
-						    	<input type="number" min="0" max="32" name="payNum" class="form-control form-control-sm" id="payNum" placeholder="호봉">
+						    	<input type="number" min="0" max="32" name="payNum" class="form-control form-control-sm" id="payNum" placeholder="호봉" required value="">
 						  	</div>
 						  
 						  
@@ -476,14 +476,14 @@ ArrayList<EmployeeDTO> list=emp.EmployeeList();
 						  
 						  	<div class="form-group">
 						    	<label>전화번호</label>
-						    	<input type="text" name="phoneNum" class="form-control form-control-sm" id="phoneNum" placeholder="전화번호">
+						    	<input type="text" name="phoneNum" class="form-control form-control-sm" id="phoneNum" placeholder="전화번호" required value="">
 						  </div>
 						  
 						  
 						  
 						  <div class="form-group">
 						    	<label>입사일자</label>
-						    	<input type="date" name="joinDate" class="form-control form-control-sm" id="joinDate">
+						    	<input type="date" name="joinDate" class="form-control form-control-sm" id="joinDate" required value="">
 						  </div>
 						
 						
