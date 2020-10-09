@@ -24,7 +24,6 @@ if((!request.getParameter("personalId").equals("") ||request.getParameterValues(
 		&& !request.getParameter("name").equals("")
 		&& !request.getParameter("joinDate").equals("") 
 		&& !request.getParameter("payNum").equals("")){
-	//id = request.getParameter("personalId");
 	String name = request.getParameter("name");
 	String pw = request.getParameter("password");
 	String dep = request.getParameter("department");
